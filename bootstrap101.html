@@ -1,0 +1,2099 @@
+<!-- Bootstrap design based on https://codescandy.com/geeks-bootstrap-5/# -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <title>Bootstrap 101 Project</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="./Images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./Images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./Images/favicon-16x16.png">
+  <link rel="manifest" href="./Images/site.webmanifest">
+  <script src="https://kit.fontawesome.com/a2df84ae52.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <!-- Internal CSS for dropdown menu hover functionality: -->
+  <style>
+    @media (min-width: 992px) {
+      .js-dropdown:hover .js-dropdown-menu{
+          display: block;
+      }
+      .js-dropdown-list:hover .js-dropdown-submenu{
+          display: block;
+          left: 178px;
+          top: 0;
+      }
+      .js-dropdown-menu,
+      .js-dropdown-submenu{
+          margin-top: 0;
+      }
+    }
+  </style>
+  <!-- jQuery for dropdown menu hover functionality: -->
+  <script>
+    $(document).ready(function(){
+        $(".js-dropdown").hover(function(){
+            var dropdownMenu = $(this).children(".js-dropdown-menu");
+            if(dropdownMenu.is(":visible")){
+                dropdownMenu.parent().toggleClass("open");
+            }
+        });
+    });  
+    $(document).ready(function(){
+        $(".js-dropdown-list").hover(function(){
+            var dropdownMenu = $(this).children(".js-dropdown-submenu");
+            if(dropdownMenu.is(":visible")){
+                dropdownMenu.parent().toggleClass("open");
+            }
+        });
+    });     
+    </script>
+</head>
+<body>
+  <!-- whole navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid px-0">
+      <!-- logo (filter used to invert colour to purple) -->
+      <a href="#" class="navbar-brand" style="width:150px; filter: invert(41%) sepia(54%) 
+      saturate(6709%) hue-rotate(240deg) brightness(99%) contrast(103%);">
+        <img src="./Images/noun_geek_1285195.svg">
+      </a>
+      <!-- hidden dropdown menu -->
+      <ul class="navbar-nav navbar-right-wrap ms-auto d-lg-none d-flex nav-top-wrap flex-row">
+        <li class="nav-item dropdown stopevent me-3 mt-1">
+          <a role="button" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-icon position-relative rounded-circle border-0 nav-link text-dark" style="background-color: #F1F1F1; width: 40px; height: 40px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#979797" class="bi bi-bell" viewBox="0 0 16 16">
+              <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
+            </svg>
+            <span class="position-absolute top-0 start-99 translate-middle p-2 bg-primary rounded-circle" style="scale:.5">
+              <span class="visually-hidden">New alerts</span>
+            </span>
+          </a>
+          <div class="mt-4 dropdown-menu dropdown-menu-end position-absolute" data-bs-toggle="dropdown" aria-labelledby="navbarDropdown">
+            <a href="#" class="dropdown-item border-bottom bg-light pb-3 pt-2" style="z-index:1;">Notifications</a>
+            <a href="#" class="dropdown-item position-absolute border-top bg-light bottom-0 py-3" style="z-index:1; font-size:15px;">See all Notifications</a>
+            <ul class="overflow-auto list-unstyled" style="width:20rem; height:25rem;">
+              <li class="position-relative border-bottom">
+                <a role="button" href="#" class="card dropdown-item border-0 bg-light" style="width: 100%;">
+                  <div class="card-body">
+                    <button type="button" class="btn-close btn-secondary float-end" style="scale:.5;" aria-label="Close"></button>
+                    <h5 class="card-title fs-6">Kristin Watson:</h5>
+                    <p class="card-text text-muted" style="font-size:14px;">Kristin Watson liked your comment!</p>
+                    <p class="card-text" style="font-size:12px; color:#979797;">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" fill="currentColor" class="bi bi-hand-thumbs-up text-success align-text-top" viewBox="0 0 16 16">
+                        <path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111L8.864.046zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z"/>
+                      </svg>
+                      2 hours ago, &#160; 2:19 PM
+                    </p>
+                  </div>
+                </a>
+              </li>
+              <li class="position-relative border-bottom">
+                <a role="button" href="#" class="card dropdown-item border-0 bg-light" style="width: 100%;">
+                  <div class="card-body">
+                    <button type="button" class="btn-close btn-secondary float-end" style="scale:.5;" aria-label="Close"></button>
+                    <h5 class="card-title fs-6">Brooklyn Simmons:</h5>
+                    <p class="card-text text-muted" style="font-size:14px;">Just launched a new course in React!</p>
+                    <p class="card-text" style="font-size:12px; color:#979797;">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" fill="currentColor" class="bi bi-hand-thumbs-up text-success align-text-top" viewBox="0 0 16 16">
+                        <path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111L8.864.046zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z"/>
+                      </svg>
+                      7 hours ago, &#160; 9:25 AM
+                    </p>
+                  </div>
+                </a>
+              </li>
+              <li class="position-relative border-bottom">
+                <a role="button" href="#" class="card dropdown-item border-0 bg-light" style="width: 100%;">
+                  <div class="card-body">
+                    <button type="button" class="btn-close btn-secondary float-end" style="scale:.5;" aria-label="Close"></button>
+                    <h5 class="card-title fs-6">Jenny Simmons:</h5>
+                    <p class="card-text text-muted" style="font-size:14px;">Jenny Simmons liked your comment!</p>
+                    <p class="card-text" style="font-size:12px; color:#979797;">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" fill="currentColor" class="bi bi-hand-thumbs-up text-success align-text-top" viewBox="0 0 16 16">
+                        <path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111L8.864.046zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z"/>
+                      </svg>
+                      2 days ago, &#160; 4:47 PM
+                    </p>
+                  </div>
+                </a>
+              </li>
+              <li class="position-relative mb-5 border-bottom">
+                <a role="button" href="#" class="card dropdown-item border-0 bg-light" style="width: 100%;">
+                  <div class="card-body">
+                    <button type="button" class="btn-close btn-secondary float-end" style="scale:.5;" aria-label="Close"></button>
+                    <h5 class="card-title fs-6">Kristin Watson:</h5>
+                    <p class="card-text text-muted" style="font-size:14px;">Kristin Watson liked your comment!</p>
+                    <p class="card-text" style="font-size:12px; color:#979797;">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" fill="currentColor" class="bi bi-hand-thumbs-up text-success align-text-top" viewBox="0 0 16 16">
+                        <path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111L8.864.046zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z"/>
+                      </svg>
+                      2 days ago, &#160; 12:01 PM
+                    </p>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <!-- profile picture icon -->
+        <li class="nav-item dropdown me-3">
+          <a class="position-relative rounded-circle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img class="rounded-circle" src="./Images/dog-pp.jpg" alt="" style="width:40px;">
+            <span class="position-absolute top-50 start-50 p-2 bg-success border border-2 border-light rounded-circle" style="scale:.6">
+              <span class="visually-hidden">New alerts</span>
+            </span>
+          </a>
+          <!-- profile pic menu -->
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg me-3 mt-4 position-absolute">
+            <li>
+              <a href="#" class="dropdown-item">
+                Claire Robertson
+                <div class="text-muted">
+                  <small>claire.robs@email.com</small>
+                </div>
+              </a>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+              <a href="#" class="dropdown-item">
+                <i class="far fa-circle"></i>
+                &#160; Status
+              </a>
+          </li>
+            <li>
+              <a href="#" class="dropdown-item">
+                <i class="fas fa-user-edit"></i>
+                &#160; Profile
+              </a>
+          </li>
+            <li>
+              <a href="#" class="dropdown-item">
+                <i class="fas fa-star"></i>
+                &#160; Subscription
+              </a>
+          </li>
+            <li>
+              <a href="#" class="dropdown-item">
+                <i class="fas fa-cogs"></i>
+                &#160; Settings
+              </a>
+          </li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+              <a href="#" class="dropdown-item">
+                <i class="fas fa-sign-out-alt"></i>
+                &#160; Sign Out
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <button class="navbar-toggler me-3 btn btn-lg collapsed position-relative" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="width:38px; height:40px; filter: invert(41%) sepia(54%) 
+      saturate(6709%) hue-rotate(240deg) brightness(99%) contrast(103%);">
+        <span class="navbar-toggler-icon position-absolute translate-middle"></span>
+      </button>
+
+      <!-- dropdown buttons with menus -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mb-2 mb-lg-0 justify-content-center">
+          <li class="nav-item dropdown js-dropdown">
+            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Browse
+            </a>
+            <ul class="dropdown-menu js-dropdown-menu py-2" aria-labelledby="navbarDropdown">
+              <li class="js-dropdown-list dropdown-submenu dropend">
+                <a class="dropdown-item dropdown-list-group-item dropdown-toggle" href="#">
+                  Web Development
+                </a>
+                <ul class="dropdown-menu js-dropdown-submenu">
+                  <li><a href="#" class="dropdown-item">Bootstrap</a></li>
+                  <li><a href="#" class="dropdown-item">React</a></li>
+                  <li><a href="#" class="dropdown-item">GraphQl</a></li>
+                  <li><a href="#" class="dropdown-item">Gatsby</a></li>
+                  <li><a href="#" class="dropdown-item">Grunt</a></li>
+                  <li><a href="#" class="dropdown-item">Svelte</a></li>
+                  <li><a href="#" class="dropdown-item">Meteor</a></li>
+                  <li><a href="#" class="dropdown-item">HTML5</a></li>
+                  <li><a href="#" class="dropdown-item">Angular</a></li>
+                </ul>
+              </li>
+              <li class="js-dropdown-list dropdown-submenu dropend">
+                <a class="dropdown-item dropdown-list-group-item dropdown-toggle" href="#">
+                  Design
+                </a>
+                <ul class="dropdown-menu js-dropdown-submenu">
+                  <li><a href="#" class="dropdown-item">Graphic Design</a></li>
+                  <li><a href="#" class="dropdown-item">Illustrator</a></li>
+                  <li><a href="#" class="dropdown-item">UX / UI Design</a></li>
+                  <li><a href="#" class="dropdown-item">Figma Design</a></li>
+                  <li><a href="#" class="dropdown-item">Adobe XD</a></li>
+                  <li><a href="#" class="dropdown-item">Sketch</a></li>
+                  <li><a href="#" class="dropdown-item">Icon Design</a></li>
+                  <li><a href="#" class="dropdown-item">Photoshop</a></li>
+                </ul>
+              </li>
+              <li><a class="dropdown-item" href="#">Mobile App</a></li>
+              <li><a class="dropdown-item" href="#">IT Software</a></li>
+              <li><a class="dropdown-item" href="#">Marketing</a></li>
+              <li><a class="dropdown-item" href="#">Music</a></li>
+              <li><a class="dropdown-item" href="#">Life Style</a></li>
+              <li><a class="dropdown-item" href="#">Business</a></li>
+              <li><a class="dropdown-item" href="#">Photography</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown js-dropdown">
+            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Landings
+            </a>
+            <ul class="dropdown-menu js-dropdown-menu py-2" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item text-muted" href="#"><small>LANDINGS</small></a></li>
+              <li><a class="dropdown-item" href="#">Courses</a></li>
+              <li><a class="dropdown-item" href="#">Lead Course</a></li>
+              <li><a class="dropdown-item" href="#">Request Access</a></li>
+              <li><a class="dropdown-item" href="#">SaaS</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown js-dropdown">
+            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Pages
+            </a>
+            <ul class="dropdown-menu js-dropdown-menu py-2" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Courses</a></li>
+              <li><a class="dropdown-item" href="#">Paths</a></li>
+              <li><a class="dropdown-item" href="#">Blog</a></li>
+              <li><a class="dropdown-item" href="#">Career</a></li>
+              <li><a class="dropdown-item" href="#">Specialty</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">About</a></li>
+              <li>
+                <a class="dropdown-item" href="#">
+                  Help Center &nbsp;
+                  <span class="btn-sm btn-success" style="font-size: 12px;">New</span>
+                </a>
+            </li>
+              <li><a class="dropdown-item" href="#">Pricing</a></li>
+              <li><a class="dropdown-item" href="#">Compare Plan</a></li>
+              <li><a class="dropdown-item" href="#">Contact</a></li>
+
+            </ul>
+          </li>
+          <li class="nav-item dropdown js-dropdown">
+            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Accounts
+            </a>
+            <ul class="dropdown-menu js-dropdown-menu py-2" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item text-muted" href="#"><small>ACCOUNTS</small></a></li>
+              <li><a class="dropdown-item" href="#">Instructor</a></li>
+              <li><a class="dropdown-item" href="#">Students</a></li>
+              <li><a class="dropdown-item" href="#">Admin</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Sign In</a></li>
+              <li><a class="dropdown-item" href="#">Sign Up</a></li>
+              <li><a class="dropdown-item" href="#">Forgot Password</a></li>
+              <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+              <li><a class="dropdown-item" href="#">Security</a></li>
+              <li><a class="dropdown-item" href="#">Social Profiles</a></li>
+              <li><a class="dropdown-item" href="#">Notifications</a></li>
+              <li><a class="dropdown-item" href="#">Privacy Settings</a></li>
+              <li><a class="dropdown-item" href="#">Delete Profile</a></li>
+              <li><a class="dropdown-item" href="#">Linked Accounts</a></li>
+
+            </ul>
+          </li>
+          <!-- dropdown menu with three dots horizontally -->
+          <li class="nav-item dropdown js-dropdown">
+            <a id="navbarDropdown" href="#" class="nav-link text-dark" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+                <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+              </svg>
+            </a>
+            <ul class="dropdown-menu js-dropdown-menu py-4" aria-labelledby="navbarDropdown">
+              <li>
+                <a class="dropdown-item" href="#">
+                  <div class="d-flex align-items-center">
+                    <i class="far fa-file-alt" style="color:#754ffe"></i>
+                    <div class="ms-3">
+                      <h6 class="mb-0">Documentation</h6>
+                      <p class="mb-0" style="font-size: 0.85rem;">
+                        Browse the all documentation
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">
+                  <div class="d-flex align-items-center">
+                    <i class="far fa-file-alt" style="color:#754ffe"></i>
+                    <div class="ms-3">
+                      <h6 class="mb-0">Changelog v2.2.3</h6>
+                      <p class="mb-0" style="font-size: 0.85rem;">
+                        See what's new
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <!-- search box -->
+        <form class="mt-3 mt-lg-0 ms-lg-3 d-flex align-items-center">
+          <input class="form-control ps-6 py-2 mt-3" type="search" placeholder="Search Courses" aria-label="Search">
+        </form>
+        <!-- notification and profile menus -->
+        <ul class="navbar-nav navbar-right-wrap ms-auto d-none d-lg-block">
+          <li class="dropdown d-inline-block stopevent">
+            <a role="button" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-primary btn-icon position-relative rounded-circle border-0 nav-link text-dark" style="background-color: #F1F1F1; width: 40px; height: 40px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#979797" class="bi bi-bell" viewBox="0 0 16 16">
+                <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
+              </svg>
+              <span class="position-absolute top-0 start-99 translate-middle p-2 bg-primary rounded-circle" style="scale:.5">
+                <span class="visually-hidden">New alerts</span>
+              </span>
+            </a>
+            <div class="mt-4 dropdown-menu dropdown-menu-end position-absolute" data-bs-toggle="dropdown" aria-labelledby="navbarDropdown">
+              <a href="#" class="dropdown-item border-bottom bg-light pb-3 pt-2" style="z-index:1;">Notifications</a>
+              <a href="#" class="dropdown-item position-absolute border-top bg-light bottom-0 py-3" style="z-index:1; font-size:15px;">See all Notifications</a>
+              <ul class="overflow-auto list-unstyled" style="width:20rem; height:25rem;">
+                <li class="position-relative border-bottom">
+                  <a role="button" href="#" class="card dropdown-item border-0 bg-light" style="width: 100%;">
+                    <div class="card-body">
+                      <button type="button" class="btn-close btn-secondary float-end" style="scale:.5;" aria-label="Close"></button>
+                      <h5 class="card-title fs-6">Kristin Watson:</h5>
+                      <p class="card-text text-muted" style="font-size:14px;">Kristin Watson liked your comment!</p>
+                      <p class="card-text" style="font-size:12px; color:#979797;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" fill="currentColor" class="bi bi-hand-thumbs-up text-success align-text-top" viewBox="0 0 16 16">
+                          <path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111L8.864.046zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z"/>
+                        </svg>
+                        2 hours ago, &#160; 2:19 PM
+                      </p>
+                    </div>
+                  </a>
+                </li>
+                <li class="position-relative border-bottom">
+                  <a role="button" href="#" class="card dropdown-item border-0 bg-light" style="width: 100%;">
+                    <div class="card-body">
+                      <button type="button" class="btn-close btn-secondary float-end" style="scale:.5;" aria-label="Close"></button>
+                      <h5 class="card-title fs-6">Brooklyn Simmons:</h5>
+                      <p class="card-text text-muted" style="font-size:14px;">Just launched a new course in React!</p>
+                      <p class="card-text" style="font-size:12px; color:#979797;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" fill="currentColor" class="bi bi-hand-thumbs-up text-success align-text-top" viewBox="0 0 16 16">
+                          <path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111L8.864.046zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z"/>
+                        </svg>
+                        7 hours ago, &#160; 9:25 AM
+                      </p>
+                    </div>
+                  </a>
+                </li>
+                <li class="position-relative border-bottom">
+                  <a role="button" href="#" class="card dropdown-item border-0 bg-light" style="width: 100%;">
+                    <div class="card-body">
+                      <button type="button" class="btn-close btn-secondary float-end" style="scale:.5;" aria-label="Close"></button>
+                      <h5 class="card-title fs-6">Jenny Simmons:</h5>
+                      <p class="card-text text-muted" style="font-size:14px;">Jenny Simmons liked your comment!</p>
+                      <p class="card-text" style="font-size:12px; color:#979797;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" fill="currentColor" class="bi bi-hand-thumbs-up text-success align-text-top" viewBox="0 0 16 16">
+                          <path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111L8.864.046zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z"/>
+                        </svg>
+                        2 days ago, &#160; 4:47 PM
+                      </p>
+                    </div>
+                  </a>
+                </li>
+                <li class="position-relative mb-5 border-bottom">
+                  <a role="button" href="#" class="card dropdown-item border-0 bg-light" style="width: 100%;">
+                    <div class="card-body">
+                      <button type="button" class="btn-close btn-secondary float-end" style="scale:.5;" aria-label="Close"></button>
+                      <h5 class="card-title fs-6">Kristin Watson:</h5>
+                      <p class="card-text text-muted" style="font-size:14px;">Kristin Watson liked your comment!</p>
+                      <p class="card-text" style="font-size:12px; color:#979797;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" fill="currentColor" class="bi bi-hand-thumbs-up text-success align-text-top" viewBox="0 0 16 16">
+                          <path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111L8.864.046zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z"/>
+                        </svg>
+                        2 days ago, &#160; 12:01 PM
+                      </p>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item dropdown d-inline-block">
+            <a class="btn btn-icon position-relative rounded-circle nav-link me-2" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img class="rounded-circle" src="./Images/dog-pp.jpg" alt="" style="width:40px;">
+              <span class="position-absolute top-50 start-50 p-2 bg-success border border-2 border-light rounded-circle" style="scale:.6">
+                <span class="visually-hidden">New alerts</span>
+              </span>
+            </a>
+            <!-- profile pic menu -->
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg me-3 mt-3">
+              <li>
+                <a href="#" class="dropdown-item">
+                  Claire Robertson
+                  <div class="text-muted">
+                    <small>claire.robs@email.com</small>
+                  </div>
+                </a>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <a href="#" class="dropdown-item">
+                  <i class="far fa-circle"></i>
+                  &#160; Status
+                </a>
+            </li>
+              <li>
+                <a href="#" class="dropdown-item">
+                  <i class="fas fa-user-edit"></i>
+                  &#160; Profile
+                </a>
+            </li>
+              <li>
+                <a href="#" class="dropdown-item">
+                  <i class="fas fa-star"></i>
+                  &#160; Subscription
+                </a>
+            </li>
+              <li>
+                <a href="#" class="dropdown-item">
+                  <i class="fas fa-cogs"></i>
+                  &#160; Settings
+                </a>
+            </li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <a href="#" class="dropdown-item">
+                  <i class="fas fa-sign-out-alt"></i>
+                  &#160; Sign Out
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- hero image (jumbotron) with text and buttons -->
+  <div style="background-color:#754ffe;">
+    <div class="container py-3 px-2">
+      <div class="row align-items-center g-0">
+        <div class="col-xl-5 col-lg-6 col-md-12">
+          <div class="py-5 py-lg-0">
+            <h1 class="display-6 fw-bold text-white">Welcome to Geeks UI Learning Application</h1>
+            <p class="col-md-12 fs-5 text-white-50">
+              Hand-picked Instructor and expertly crafted courses, designed for the modern students and entrepreneur. 
+            </p>
+            <a class="btn btn-success btn-lg fw-bold fs-6 p-3" type="button">Browse Courses</a>
+            <a class="btn btn-light btn-lg fw-bold fs-6 p-3" type="button">Are you an Instructor?</a>
+          </div>
+        </div>
+        <div class=" col-xl-7 col-lg-6 col-md-12 text-lg-end text-center">
+          <img src="./Images/designecologist-ZShQeCoFHp0-unsplash.jpg" alt="" class="img-fluid opacity-75">
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- information panel -->
+  <div class="bg-light py-4 align-items-center shadow-sm">
+    <div class="container">
+      <div class="row align-items-center g-0">
+        <!-- feature 1: -->
+        <div class="col-xl-4 col-lg-4 col-md-6 mb-lg-0 mb-4">
+          <div class="d-flex align-items-center">
+            <span class="rounded-circle text-dark-warning text-center p-3" style="background-color:#ffe0d1; color:#cc7a51; height: 52px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-camera-video align-top" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5zm11.5 5.175 3.5 1.556V4.269l-3.5 1.556v4.35zM2 4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H2z"/>
+              </svg>
+            </span>
+            <div class="ms-3">
+              <h5 class="mb-0">30,000 online courses</h5>
+              <p class="text-muted mb-0">Enjoy a variety of fresh topics</p>
+            </div>
+          </div>
+        </div>
+        <!-- feature 2: -->
+        <div class="col-xl-4 col-lg-4 col-md-6 mb-lg-0 mb-4">
+          <div class="d-flex align-items-center">
+            <span class="rounded-circle text-dark-warning p-3" style="background-color:#ffe0d1; color:#cc7a51; height: 52px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-people align-top" viewBox="0 0 16 16">
+                <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
+              </svg>
+            </span>
+            <div class="ms-3">
+              <h5 class="mb-0">Expert instruction</h5>
+              <p class="text-muted mb-0">Find the right instructor for you</p>
+            </div>
+          </div>
+        </div>
+        <!-- feature 3: -->
+        <div class="col-xl-4 col-lg-4 col-md-12">
+          <div class="d-flex align-items-center">
+            <span class="rounded-circle text-dark-warning p-3" style="background-color:#ffe0d1; color:#cc7a51; height: 52px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-clock align-top" viewBox="0 0 16 16">
+                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+              </svg>
+            </span>
+            <div class="ms-3">
+              <h5 class="mb-0">Lifetime access</h5>
+              <p class="text-muted mb-0">Learn on your schedule</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Card carousel 1 -->
+  <div class="pt-lg-5 pb-lg-2 pt-4 pb-3">
+    <div class="container">
+      <div class="row mb-4">
+        <!-- Controls -->
+        <div class="col-2">
+          <a class="btn btn-large btn-secondary" href="#multi-item-carousel-1" data-slide="prev"><i class="fas fa-chevron-left"></i></a>
+        </div>
+        <div class="col-8">
+            <h3 class="mb-3 text-center">Recommended Courses</h3>
+        </div>
+        <div class="col-2">
+          <a class="btn btn-large btn-secondary float-end" href="#multi-item-carousel-1" data-slide="next"><i class="fas fa-chevron-right"></i></a>
+        </div>
+        <div class="col-12">
+          <!-- Carousel Wrapper -->
+          <div id="multi-item-carousel-1" class="carousel slide carousel-multi-item" data-bs-ride="carousel">
+            <!-- Slides -->
+            <div class="carousel-inner" role="listbox">
+              <!-- First slide -->
+              <div class="carousel-item active">
+                <div class="row">
+                  <div class="col-sm-12 col-md-6 col-lg-3 mb-3 d-flex justify-content-center">
+                    <!-- card 1 (green)-->
+                    <div class="card mb-4" style="width: 16.5rem; border-radius:.7rem;">
+                      <img src="./Images/green.jpg" class="card-img-top" alt="..." style="border-top-left-radius:.7rem; border-top-right-radius:.7rem; height:150px;">
+                      <div class="card-body mx-2">
+                        <h5 class="card-title mt-2" style="font-size:18px;">The Python Course: Build a web application</h5>
+                        <p class="card-text">
+                          <span class="rounded-circle">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                              <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                            </svg>
+                          </span>
+                          <span class="align-middle text-muted pe-2" style="font-size: 14px;">
+                            2h 30m
+                          </span>
+                          <span class="ps-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#754ffe" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
+                              <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/>
+                            </svg> &#160;
+                            <span class="align-middle text-muted" style="font-size: 14px;">
+                              Intermediate
+                            </span>
+                          </span>
+                          <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <span class="align-middle ps-1" style="color:#ffaa46;">4.5</span>
+                            <span class="text-muted align-middle" style="font-size:12px;">(13,245)</span>
+                          </div>
+                        </p>
+                      </div>
+                      <div class="card-footer text-secondary bg-white" style="font-size:15.5px; border-bottom-left-radius:.7rem;; border-bottom-right-radius:.7rem;">
+                        <span class="pe-2">
+                          <img class="rounded-circle" src="./Images/terrier-pp.jpeg" alt="" style="width:30px;">
+                        </span>
+                        <span class="align-middle">
+                          Terri Urtog
+                        </span>
+                        <span class="float-end pt-2">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="text-muted bi bi-bookmark" viewBox="0 0 16 16">
+                            <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-6 col-lg-3 mb-3 d-flex justify-content-center">
+                    <!-- card 2 (yellow)-->
+                    <div class="card mb-4" style="width: 16.5rem; border-radius:.7rem;">
+                      <img src="./Images/yellow.jpg" class="card-img-top" alt="..." style="border-top-left-radius:.7rem; border-top-right-radius:.7rem; height:150px;">
+                      <div class="card-body mx-2">
+                        <h5 class="card-title mt-2" style="font-size:18px;">Getting Started with JavaScript</h5>
+                        <p class="card-text">
+                          <span class="rounded-circle">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                              <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                            </svg>
+                          </span>
+                          <span class="align-middle text-muted pe-2" style="font-size: 14px;">
+                            2h 46m
+                          </span>
+                          <span class="ps-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#754ffe" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
+                              <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/>
+                            </svg> &#160;
+                            <span class="align-middle text-muted" style="font-size: 14px;">
+                              Advanced
+                            </span>
+                          </span>
+                          <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <span class="align-middle ps-1" style="color:#ffaa46;">4.8</span>
+                            <span class="text-muted align-middle" style="font-size:12px;">(5,300)</span>
+                          </div>
+                        </p>
+                      </div>
+                      <div class="card-footer text-secondary bg-white" style="font-size:15.5px; border-bottom-left-radius:.7rem;; border-bottom-right-radius:.7rem;">
+                        <span class="pe-2">
+                          <img class="rounded-circle" src="./Images/dog-pp.jpg" alt="" style="width:30px;">
+                        </span>
+                        <span class="align-middle">
+                          Claire Robertson
+                        </span>
+                        <span class="float-end pt-2">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="text-muted bi bi-bookmark" viewBox="0 0 16 16">
+                            <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-6 col-lg-3 mb-3 d-flex justify-content-center">
+                    <!-- card 3 (red)-->
+                    <div class="card mb-4" style="width: 16.5rem; border-radius:.7rem;">
+                      <img src="./Images/red.jpg" class="card-img-top" alt="..." style="border-top-left-radius:.7rem; border-top-right-radius:.7rem; height:150px;">
+                      <div class="card-body mx-2">
+                        <h5 class="card-title mt-2" style="font-size:18px;">Angular: The complete guide for beginners</h5>
+                        <p class="card-text">
+                          <span class="rounded-circle">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                              <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                            </svg>
+                          </span>
+                          <span class="align-middle text-muted pe-2" style="font-size: 14px;">
+                            1h 30m
+                          </span>
+                          <span class="ps-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#754ffe" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
+                              <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/>
+                            </svg> &#160;
+                            <span class="align-middle text-muted" style="font-size: 14px;">
+                              Beginner
+                            </span>
+                          </span>
+                          <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <span class="align-middle ps-1" style="color:#ffaa46;">4.4</span>
+                            <span class="text-muted align-middle" style="font-size:12px;">(6,620)</span>
+                          </div>
+                        </p>
+                      </div>
+                      <div class="card-footer text-secondary bg-white" style="font-size:15.5px; border-bottom-left-radius:.7rem;; border-bottom-right-radius:.7rem;">
+                        <span class="pe-2">
+                          <img class="rounded-circle" src="./Images/sausage-dog.jpg" alt="" style="width:30px;">
+                        </span>
+                        <span class="align-middle">
+                          Jerry Wilson
+                        </span>
+                        <span class="float-end pt-2">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="text-muted bi bi-bookmark" viewBox="0 0 16 16">
+                            <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-6 col-lg-3 mb-3 d-flex justify-content-center">
+                    <!-- card 4 (blue) -->
+                    <div class="card mb-4" style="width: 16.5rem; border-radius:.7rem;">
+                      <img src="./Images/blue.jpg" class="card-img-top" alt="..." style="border-top-left-radius:.7rem; border-top-right-radius:.7rem; height:150px;">
+                      <div class="card-body mx-2">
+                        <h5 class="card-title mt-2" style="font-size:18px;">How to easily create a website with React</h5>
+                        <p class="card-text">
+                          <span class="rounded-circle">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                              <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                            </svg>
+                          </span>
+                          <span class="align-middle text-muted pe-2" style="font-size: 14px;">
+                            3h 56m
+                          </span>
+                          <span class="ps-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#754ffe" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
+                              <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/>
+                            </svg> &#160;
+                            <span class="align-middle text-muted" style="font-size: 14px;">
+                              Intermediate
+                            </span>
+                          </span>
+                          <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <span class="align-middle ps-1" style="color:#ffaa46;">4.9</span>
+                            <span class="text-muted align-middle" style="font-size:12px;">(17,175)</span>
+                          </div>
+                        </p>
+                      </div>
+                      <div class="card-footer text-secondary bg-white" style="font-size:15.5px; border-bottom-left-radius:.7rem;; border-bottom-right-radius:.7rem;">
+                        <span class="pe-2">
+                          <img class="rounded-circle" src="./Images/terrier-pp.jpeg" alt="" style="width:30px;">
+                        </span>
+                        <span class="align-middle">
+                          Terri Urtog
+                        </span>
+                        <span class="float-end pt-2">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="text-muted bi bi-bookmark" viewBox="0 0 16 16">
+                            <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- / First slide end -->
+              <!-- Second slide -->
+              <div class="carousel-item">
+                <div class="row">
+                  <div class="col-sm-12 col-md-6 col-lg-3 mb-3 d-flex justify-content-center">
+                    <!-- card 1 (pink)-->
+                    <div class="card mb-4" style="width: 16.5rem; border-radius:.7rem;">
+                      <img src="./Images/pink.jpg" class="card-img-top" alt="..." style="border-top-left-radius:.7rem; border-top-right-radius:.7rem; height:150px;">
+                      <div class="card-body mx-2">
+                        <h5 class="card-title mt-2" style="font-size:18px;">An Introduction to GraphQL for Beginners</h5>
+                        <p class="card-text">
+                          <span class="rounded-circle">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                              <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                            </svg>
+                          </span>
+                          <span class="align-middle text-muted pe-2" style="font-size: 14px;">
+                            2h 15m
+                          </span>
+                          <span class="ps-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#754ffe" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
+                              <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/>
+                            </svg> &#160;
+                            <span class="align-middle text-muted" style="font-size: 14px;">
+                              Advanced
+                            </span>
+                          </span>
+                          <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <span class="align-middle ps-1" style="color:#ffaa46;">4.6</span>
+                            <span class="text-muted align-middle" style="font-size:12px;">(9,848)</span>
+                          </div>
+                        </p>
+                      </div>
+                      <div class="card-footer text-secondary bg-white" style="font-size:15.5px; border-bottom-left-radius:.7rem;; border-bottom-right-radius:.7rem;">
+                        <span class="pe-2">
+                          <img class="rounded-circle" src="./Images/sausage-dog.jpg" alt="" style="width:30px;">
+                        </span>
+                        <span class="align-middle">
+                          Jerry Wilson
+                        </span>
+                        <span class="float-end pt-2">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="text-muted bi bi-bookmark" viewBox="0 0 16 16">
+                            <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-6 col-lg-3 mb-3 d-flex justify-content-center">
+                    <!-- card 2 (blue)-->
+                    <div class="card mb-4" style="width: 16.5rem; border-radius:.7rem;">
+                      <img src="./Images/blue.jpg" class="card-img-top" alt="..." style="border-top-left-radius:.7rem; border-top-right-radius:.7rem; height:150px;">
+                      <div class="card-body mx-2">
+                        <h5 class="card-title mt-2" style="font-size:18px;">How to easily create a website with React</h5>
+                        <p class="card-text">
+                          <span class="rounded-circle">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                              <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                            </svg>
+                          </span>
+                          <span class="align-middle text-muted pe-2" style="font-size: 14px;">
+                            3h 56m
+                          </span>
+                          <span class="ps-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#754ffe" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
+                              <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/>
+                            </svg> &#160;
+                            <span class="align-middle text-muted" style="font-size: 14px;">
+                              Intermediate
+                            </span>
+                          </span>
+                          <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <span class="align-middle ps-1" style="color:#ffaa46;">4.9</span>
+                            <span class="text-muted align-middle" style="font-size:12px;">(17,175)</span>
+                          </div>
+                        </p>
+                      </div>
+                      <div class="card-footer text-secondary bg-white" style="font-size:15.5px; border-bottom-left-radius:.7rem;; border-bottom-right-radius:.7rem;">
+                        <span class="pe-2">
+                          <img class="rounded-circle" src="./Images/terrier-pp.jpeg" alt="" style="width:30px;">
+                        </span>
+                        <span class="align-middle">
+                          Terri Urtog
+                        </span>
+                        <span class="float-end pt-2">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="text-muted bi bi-bookmark" viewBox="0 0 16 16">
+                            <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-6 col-lg-3 mb-3 d-flex justify-content-center">
+                    <!-- card 3 (orange)-->
+                    <div class="card mb-4" style="width: 16.5rem; border-radius:.7rem;">
+                      <img src="./Images/orange.jpg" class="card-img-top" alt="..." style="border-top-left-radius:.7rem; border-top-right-radius:.7rem; height:150px;">
+                      <div class="card-body mx-2">
+                        <h5 class="card-title mt-2" style="font-size:18px;">CSS: The Ultimate CSS Course for Everyone</h5>
+                        <p class="card-text">
+                          <span class="rounded-circle">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                              <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                            </svg>
+                          </span>
+                          <span class="align-middle text-muted pe-2" style="font-size: 14px;">
+                            3h 30m
+                          </span>
+                          <span class="ps-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#754ffe" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
+                              <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/>
+                            </svg> &#160;
+                            <span class="align-middle text-muted" style="font-size: 14px;">
+                              Intermediate
+                            </span>
+                          </span>
+                          <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <span class="align-middle ps-1" style="color:#ffaa46;">4.7</span>
+                            <span class="text-muted align-middle" style="font-size:12px;">(23,570)</span>
+                          </div>
+                        </p>
+                      </div>
+                      <div class="card-footer text-secondary bg-white" style="font-size:15.5px; border-bottom-left-radius:.7rem;; border-bottom-right-radius:.7rem;">
+                        <span class="pe-2">
+                          <img class="rounded-circle" src="./Images/dog-pp.jpg" alt="" style="width:30px;">
+                        </span>
+                        <span class="align-middle">
+                          Claire Robertson
+                        </span>
+                        <span class="float-end pt-2">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="text-muted bi bi-bookmark" viewBox="0 0 16 16">
+                            <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-6 col-lg-3 mb-3 d-flex justify-content-center">
+                    <!-- card 4 (yellow) -->
+                    <div class="card mb-4" style="width: 16.5rem; border-radius:.7rem;">
+                      <img src="./Images/yellow.jpg" class="card-img-top" alt="..." style="border-top-left-radius:.7rem; border-top-right-radius:.7rem; height:150px;">
+                      <div class="card-body mx-2">
+                        <h5 class="card-title mt-2" style="font-size:18px;">Getting Started with JavaScript</h5>
+                        <p class="card-text">
+                          <span class="rounded-circle">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                              <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                            </svg>
+                          </span>
+                          <span class="align-middle text-muted pe-2" style="font-size: 14px;">
+                            2h 46m
+                          </span>
+                          <span class="ps-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#754ffe" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
+                              <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/>
+                            </svg> &#160;
+                            <span class="align-middle text-muted" style="font-size: 14px;">
+                              Advanced
+                            </span>
+                          </span>
+                          <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <span class="align-middle ps-1" style="color:#ffaa46;">4.8</span>
+                            <span class="text-muted align-middle" style="font-size:12px;">(5,300)</span>
+                          </div>
+                        </p>
+                      </div>
+                      <div class="card-footer text-secondary bg-white" style="font-size:15.5px; border-bottom-left-radius:.7rem;; border-bottom-right-radius:.7rem;">
+                        <span class="pe-2">
+                          <img class="rounded-circle" src="./Images/dog-pp.jpg" alt="" style="width:30px;">
+                        </span>
+                        <span class="align-middle">
+                          Claire Robertson
+                        </span>
+                        <span class="float-end pt-2">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="text-muted bi bi-bookmark" viewBox="0 0 16 16">
+                            <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- / Second slide end -->
+              <!-- Third slide -->
+              <div class="carousel-item">
+                <div class="row">
+                  <div class="col-sm-12 col-md-6 col-lg-3 mb-3 d-flex justify-content-center">
+                    <!-- card 1 (red)-->
+                    <div class="card mb-4" style="width: 16.5rem; border-radius:.7rem;">
+                      <img src="./Images/red.jpg" class="card-img-top" alt="..." style="border-top-left-radius:.7rem; border-top-right-radius:.7rem; height:150px;">
+                      <div class="card-body mx-2">
+                        <h5 class="card-title mt-2" style="font-size:18px;">Angular: The complete guide for beginners</h5>
+                        <p class="card-text">
+                          <span class="rounded-circle">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                              <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                            </svg>
+                          </span>
+                          <span class="align-middle text-muted pe-2" style="font-size: 14px;">
+                            1h 30m
+                          </span>
+                          <span class="ps-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#754ffe" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
+                              <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/>
+                            </svg> &#160;
+                            <span class="align-middle text-muted" style="font-size: 14px;">
+                              Beginner
+                            </span>
+                          </span>
+                          <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <span class="align-middle ps-1" style="color:#ffaa46;">4.4</span>
+                            <span class="text-muted align-middle" style="font-size:12px;">(6,620)</span>
+                          </div>
+                        </p>
+                      </div>
+                      <div class="card-footer text-secondary bg-white" style="font-size:15.5px; border-bottom-left-radius:.7rem;; border-bottom-right-radius:.7rem;">
+                        <span class="pe-2">
+                          <img class="rounded-circle" src="./Images/sausage-dog.jpg" alt="" style="width:30px;">
+                        </span>
+                        <span class="align-middle">
+                          Jerry Wilson
+                        </span>
+                        <span class="float-end pt-2">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="text-muted bi bi-bookmark" viewBox="0 0 16 16">
+                            <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-6 col-lg-3 mb-3 d-flex justify-content-center">
+                    <!-- card 2 (green)-->
+                    <div class="card mb-4" style="width: 16.5rem; border-radius:.7rem;">
+                      <img src="./Images/green.jpg" class="card-img-top" alt="..." style="border-top-left-radius:.7rem; border-top-right-radius:.7rem; height:150px;">
+                      <div class="card-body mx-2">
+                        <h5 class="card-title mt-2" style="font-size:18px;">The Python Course: Build a web application</h5>
+                        <p class="card-text">
+                          <span class="rounded-circle">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                              <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                            </svg>
+                          </span>
+                          <span class="align-middle text-muted pe-2" style="font-size: 14px;">
+                            2h 30m
+                          </span>
+                          <span class="ps-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#754ffe" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
+                              <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/>
+                            </svg> &#160;
+                            <span class="align-middle text-muted" style="font-size: 14px;">
+                              Intermediate
+                            </span>
+                          </span>
+                          <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <span class="align-middle ps-1" style="color:#ffaa46;">4.5</span>
+                            <span class="text-muted align-middle" style="font-size:12px;">(13,245)</span>
+                          </div>
+                        </p>
+                      </div>
+                      <div class="card-footer text-secondary bg-white" style="font-size:15.5px; border-bottom-left-radius:.7rem;; border-bottom-right-radius:.7rem;">
+                        <span class="pe-2">
+                          <img class="rounded-circle" src="./Images/terrier-pp.jpeg" alt="" style="width:30px;">
+                        </span>
+                        <span class="align-middle">
+                          Terri Urtog
+                        </span>
+                        <span class="float-end pt-2">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="text-muted bi bi-bookmark" viewBox="0 0 16 16">
+                            <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-6 col-lg-3 mb-3 d-flex justify-content-center">
+                    <!-- card 3 (pink)-->
+                    <div class="card mb-4" style="width: 16.5rem; border-radius:.7rem;">
+                      <img src="./Images/pink.jpg" class="card-img-top" alt="..." style="border-top-left-radius:.7rem; border-top-right-radius:.7rem; height:150px;">
+                      <div class="card-body mx-2">
+                        <h5 class="card-title mt-2" style="font-size:18px;">An Introduction to GraphQL for Beginners</h5>
+                        <p class="card-text">
+                          <span class="rounded-circle">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                              <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                            </svg>
+                          </span>
+                          <span class="align-middle text-muted pe-2" style="font-size: 14px;">
+                            2h 15m
+                          </span>
+                          <span class="ps-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#754ffe" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
+                              <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/>
+                            </svg> &#160;
+                            <span class="align-middle text-muted" style="font-size: 14px;">
+                              Advanced
+                            </span>
+                          </span>
+                          <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <span class="align-middle ps-1" style="color:#ffaa46;">4.6</span>
+                            <span class="text-muted align-middle" style="font-size:12px;">(9,848)</span>
+                          </div>
+                        </p>
+                      </div>
+                      <div class="card-footer text-secondary bg-white" style="font-size:15.5px; border-bottom-left-radius:.7rem;; border-bottom-right-radius:.7rem;">
+                        <span class="pe-2">
+                          <img class="rounded-circle" src="./Images/sausage-dog.jpg" alt="" style="width:30px;">
+                        </span>
+                        <span class="align-middle">
+                          Jerry Wilson
+                        </span>
+                        <span class="float-end pt-2">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="text-muted bi bi-bookmark" viewBox="0 0 16 16">
+                            <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-6 col-lg-3 mb-3 d-flex justify-content-center">
+                    <!-- card 4 (blue) -->
+                    <div class="card mb-4" style="width: 16.5rem; border-radius:.7rem;">
+                      <img src="./Images/blue.jpg" class="card-img-top" alt="..." style="border-top-left-radius:.7rem; border-top-right-radius:.7rem; height:150px;">
+                      <div class="card-body mx-2">
+                        <h5 class="card-title mt-2" style="font-size:18px;">How to easily create a website with React</h5>
+                        <p class="card-text">
+                          <span class="rounded-circle">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                              <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                            </svg>
+                          </span>
+                          <span class="align-middle text-muted pe-2" style="font-size: 14px;">
+                            3h 56m
+                          </span>
+                          <span class="ps-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#754ffe" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
+                              <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/>
+                            </svg> &#160;
+                            <span class="align-middle text-muted" style="font-size: 14px;">
+                              Intermediate
+                            </span>
+                          </span>
+                          <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            <span class="align-middle ps-1" style="color:#ffaa46;">4.9</span>
+                            <span class="text-muted align-middle" style="font-size:12px;">(17,175)</span>
+                          </div>
+                        </p>
+                      </div>
+                      <div class="card-footer text-secondary bg-white" style="font-size:15.5px; border-bottom-left-radius:.7rem;; border-bottom-right-radius:.7rem;">
+                        <span class="pe-2">
+                          <img class="rounded-circle" src="./Images/terrier-pp.jpeg" alt="" style="width:30px;">
+                        </span>
+                        <span class="align-middle">
+                          Terri Urtog
+                        </span>
+                        <span class="float-end pt-2">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="text-muted bi bi-bookmark" viewBox="0 0 16 16">
+                            <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- / Third slide end -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- Card carousel 2-->
+    <div class="pt-lg-5 pb-lg-2 pt-4 pb-3">
+      <div class="container">
+        <div class="row mb-4">
+          <!-- Controls -->
+          <div class="col-2">
+            <a class="btn btn-large btn-secondary" href="#multi-item-carousel-2" data-slide="prev"><i class="fas fa-chevron-left"></i></a>
+          </div>
+          <div class="col-8">
+              <h3 class="mb-3 text-center">Trending</h3>
+          </div>
+          <div class="col-2">
+            <a class="btn btn-large btn-secondary float-end" href="#multi-item-carousel-2" data-slide="next"><i class="fas fa-chevron-right"></i></a>
+          </div>
+          <div class="col-12">
+            <!-- Carousel Wrapper -->
+            <div id="multi-item-carousel-2" class="carousel slide carousel-multi-item" data-bs-ride="carousel">
+              <!-- Slides -->
+              <div class="carousel-inner" role="listbox">
+                <!-- First slide -->
+                <div class="carousel-item active">
+                  <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-3 mb-3 d-flex justify-content-center">
+                      <!-- card 1 (red)-->
+                      <div class="card mb-4" style="width: 16.5rem; border-radius:.7rem;">
+                        <img src="./Images/red.jpg" class="card-img-top" alt="..." style="border-top-left-radius:.7rem; border-top-right-radius:.7rem; height:150px;">
+                        <div class="card-body mx-2">
+                          <h5 class="card-title mt-2" style="font-size:18px;">Angular: The complete guide for beginners</h5>
+                          <p class="card-text">
+                            <span class="rounded-circle">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                              </svg>
+                            </span>
+                            <span class="align-middle text-muted pe-2" style="font-size: 14px;">
+                              1h 30m
+                            </span>
+                            <span class="ps-2">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#754ffe" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
+                                <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/>
+                              </svg> &#160;
+                              <span class="align-middle text-muted" style="font-size: 14px;">
+                                Beginner
+                              </span>
+                            </span>
+                            <div>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <span class="align-middle ps-1" style="color:#ffaa46;">4.4</span>
+                              <span class="text-muted align-middle" style="font-size:12px;">(6,620)</span>
+                            </div>
+                          </p>
+                        </div>
+                        <div class="card-footer text-secondary bg-white" style="font-size:15.5px; border-bottom-left-radius:.7rem;; border-bottom-right-radius:.7rem;">
+                          <span class="pe-2">
+                            <img class="rounded-circle" src="./Images/sausage-dog.jpg" alt="" style="width:30px;">
+                          </span>
+                          <span class="align-middle">
+                            Jerry Wilson
+                          </span>
+                          <span class="float-end pt-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="text-muted bi bi-bookmark" viewBox="0 0 16 16">
+                              <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                            </svg>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-3 mb-3 d-flex justify-content-center">
+                      <!-- card 2 (green)-->
+                      <div class="card mb-4" style="width: 16.5rem; border-radius:.7rem;">
+                        <img src="./Images/green.jpg" class="card-img-top" alt="..." style="border-top-left-radius:.7rem; border-top-right-radius:.7rem; height:150px;">
+                        <div class="card-body mx-2">
+                          <h5 class="card-title mt-2" style="font-size:18px;">The Python Course: Build a web application</h5>
+                          <p class="card-text">
+                            <span class="rounded-circle">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                              </svg>
+                            </span>
+                            <span class="align-middle text-muted pe-2" style="font-size: 14px;">
+                              2h 30m
+                            </span>
+                            <span class="ps-2">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#754ffe" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
+                                <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/>
+                              </svg> &#160;
+                              <span class="align-middle text-muted" style="font-size: 14px;">
+                                Intermediate
+                              </span>
+                            </span>
+                            <div>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <span class="align-middle ps-1" style="color:#ffaa46;">4.5</span>
+                              <span class="text-muted align-middle" style="font-size:12px;">(13,245)</span>
+                            </div>
+                          </p>
+                        </div>
+                        <div class="card-footer text-secondary bg-white" style="font-size:15.5px; border-bottom-left-radius:.7rem;; border-bottom-right-radius:.7rem;">
+                          <span class="pe-2">
+                            <img class="rounded-circle" src="./Images/terrier-pp.jpeg" alt="" style="width:30px;">
+                          </span>
+                          <span class="align-middle">
+                            Terri Urtog
+                          </span>
+                          <span class="float-end pt-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="text-muted bi bi-bookmark" viewBox="0 0 16 16">
+                              <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                            </svg>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-3 mb-3 d-flex justify-content-center">
+                      <!-- card 3 (pink)-->
+                      <div class="card mb-4" style="width: 16.5rem; border-radius:.7rem;">
+                        <img src="./Images/pink.jpg" class="card-img-top" alt="..." style="border-top-left-radius:.7rem; border-top-right-radius:.7rem; height:150px;">
+                        <div class="card-body mx-2">
+                          <h5 class="card-title mt-2" style="font-size:18px;">An Introduction to GraphQL for Beginners</h5>
+                          <p class="card-text">
+                            <span class="rounded-circle">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                              </svg>
+                            </span>
+                            <span class="align-middle text-muted pe-2" style="font-size: 14px;">
+                              2h 15m
+                            </span>
+                            <span class="ps-2">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#754ffe" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
+                                <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/>
+                              </svg> &#160;
+                              <span class="align-middle text-muted" style="font-size: 14px;">
+                                Advanced
+                              </span>
+                            </span>
+                            <div>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <span class="align-middle ps-1" style="color:#ffaa46;">4.6</span>
+                              <span class="text-muted align-middle" style="font-size:12px;">(9,848)</span>
+                            </div>
+                          </p>
+                        </div>
+                        <div class="card-footer text-secondary bg-white" style="font-size:15.5px; border-bottom-left-radius:.7rem;; border-bottom-right-radius:.7rem;">
+                          <span class="pe-2">
+                            <img class="rounded-circle" src="./Images/sausage-dog.jpg" alt="" style="width:30px;">
+                          </span>
+                          <span class="align-middle">
+                            Jerry Wilson
+                          </span>
+                          <span class="float-end pt-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="text-muted bi bi-bookmark" viewBox="0 0 16 16">
+                              <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                            </svg>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-3 mb-3 d-flex justify-content-center">
+                      <!-- card 4 (blue) -->
+                      <div class="card mb-4" style="width: 16.5rem; border-radius:.7rem;">
+                        <img src="./Images/blue.jpg" class="card-img-top" alt="..." style="border-top-left-radius:.7rem; border-top-right-radius:.7rem; height:150px;">
+                        <div class="card-body mx-2">
+                          <h5 class="card-title mt-2" style="font-size:18px;">How to easily create a website with React</h5>
+                          <p class="card-text">
+                            <span class="rounded-circle">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                              </svg>
+                            </span>
+                            <span class="align-middle text-muted pe-2" style="font-size: 14px;">
+                              3h 56m
+                            </span>
+                            <span class="ps-2">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#754ffe" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
+                                <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/>
+                              </svg> &#160;
+                              <span class="align-middle text-muted" style="font-size: 14px;">
+                                Intermediate
+                              </span>
+                            </span>
+                            <div>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <span class="align-middle ps-1" style="color:#ffaa46;">4.9</span>
+                              <span class="text-muted align-middle" style="font-size:12px;">(17,175)</span>
+                            </div>
+                          </p>
+                        </div>
+                        <div class="card-footer text-secondary bg-white" style="font-size:15.5px; border-bottom-left-radius:.7rem;; border-bottom-right-radius:.7rem;">
+                          <span class="pe-2">
+                            <img class="rounded-circle" src="./Images/terrier-pp.jpeg" alt="" style="width:30px;">
+                          </span>
+                          <span class="align-middle">
+                            Terri Urtog
+                          </span>
+                          <span class="float-end pt-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="text-muted bi bi-bookmark" viewBox="0 0 16 16">
+                              <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                            </svg>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- / First slide end -->
+                <!-- Second slide -->
+                <div class="carousel-item">
+                  <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-3 mb-3 d-flex justify-content-center">
+                      <!-- card 1 (green)-->
+                      <div class="card mb-4" style="width: 16.5rem; border-radius:.7rem;">
+                        <img src="./Images/green.jpg" class="card-img-top" alt="..." style="border-top-left-radius:.7rem; border-top-right-radius:.7rem; height:150px;">
+                        <div class="card-body mx-2">
+                          <h5 class="card-title mt-2" style="font-size:18px;">The Python Course: Build a web application</h5>
+                          <p class="card-text">
+                            <span class="rounded-circle">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                              </svg>
+                            </span>
+                            <span class="align-middle text-muted pe-2" style="font-size: 14px;">
+                              2h 30m
+                            </span>
+                            <span class="ps-2">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#754ffe" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
+                                <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/>
+                              </svg> &#160;
+                              <span class="align-middle text-muted" style="font-size: 14px;">
+                                Intermediate
+                              </span>
+                            </span>
+                            <div>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <span class="align-middle ps-1" style="color:#ffaa46;">4.5</span>
+                              <span class="text-muted align-middle" style="font-size:12px;">(13,245)</span>
+                            </div>
+                          </p>
+                        </div>
+                        <div class="card-footer text-secondary bg-white" style="font-size:15.5px; border-bottom-left-radius:.7rem;; border-bottom-right-radius:.7rem;">
+                          <span class="pe-2">
+                            <img class="rounded-circle" src="./Images/terrier-pp.jpeg" alt="" style="width:30px;">
+                          </span>
+                          <span class="align-middle">
+                            Terri Urtog
+                          </span>
+                          <span class="float-end pt-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="text-muted bi bi-bookmark" viewBox="0 0 16 16">
+                              <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                            </svg>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-3 mb-3 d-flex justify-content-center">
+                      <!-- card 2 (yellow)-->
+                      <div class="card mb-4" style="width: 16.5rem; border-radius:.7rem;">
+                        <img src="./Images/yellow.jpg" class="card-img-top" alt="..." style="border-top-left-radius:.7rem; border-top-right-radius:.7rem; height:150px;">
+                        <div class="card-body mx-2">
+                          <h5 class="card-title mt-2" style="font-size:18px;">Getting Started with JavaScript</h5>
+                          <p class="card-text">
+                            <span class="rounded-circle">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                              </svg>
+                            </span>
+                            <span class="align-middle text-muted pe-2" style="font-size: 14px;">
+                              2h 46m
+                            </span>
+                            <span class="ps-2">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#754ffe" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
+                                <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/>
+                              </svg> &#160;
+                              <span class="align-middle text-muted" style="font-size: 14px;">
+                                Advanced
+                              </span>
+                            </span>
+                            <div>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <span class="align-middle ps-1" style="color:#ffaa46;">4.8</span>
+                              <span class="text-muted align-middle" style="font-size:12px;">(5,300)</span>
+                            </div>
+                          </p>
+                        </div>
+                        <div class="card-footer text-secondary bg-white" style="font-size:15.5px; border-bottom-left-radius:.7rem;; border-bottom-right-radius:.7rem;">
+                          <span class="pe-2">
+                            <img class="rounded-circle" src="./Images/dog-pp.jpg" alt="" style="width:30px;">
+                          </span>
+                          <span class="align-middle">
+                            Claire Robertson
+                          </span>
+                          <span class="float-end pt-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="text-muted bi bi-bookmark" viewBox="0 0 16 16">
+                              <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                            </svg>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-3 mb-3 d-flex justify-content-center">
+                      <!-- card 3 (red)-->
+                      <div class="card mb-4" style="width: 16.5rem; border-radius:.7rem;">
+                        <img src="./Images/red.jpg" class="card-img-top" alt="..." style="border-top-left-radius:.7rem; border-top-right-radius:.7rem; height:150px;">
+                        <div class="card-body mx-2">
+                          <h5 class="card-title mt-2" style="font-size:18px;">Angular: The complete guide for beginners</h5>
+                          <p class="card-text">
+                            <span class="rounded-circle">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                              </svg>
+                            </span>
+                            <span class="align-middle text-muted pe-2" style="font-size: 14px;">
+                              1h 30m
+                            </span>
+                            <span class="ps-2">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#754ffe" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
+                                <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/>
+                              </svg> &#160;
+                              <span class="align-middle text-muted" style="font-size: 14px;">
+                                Beginner
+                              </span>
+                            </span>
+                            <div>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <span class="align-middle ps-1" style="color:#ffaa46;">4.4</span>
+                              <span class="text-muted align-middle" style="font-size:12px;">(6,620)</span>
+                            </div>
+                          </p>
+                        </div>
+                        <div class="card-footer text-secondary bg-white" style="font-size:15.5px; border-bottom-left-radius:.7rem;; border-bottom-right-radius:.7rem;">
+                          <span class="pe-2">
+                            <img class="rounded-circle" src="./Images/sausage-dog.jpg" alt="" style="width:30px;">
+                          </span>
+                          <span class="align-middle">
+                            Jerry Wilson
+                          </span>
+                          <span class="float-end pt-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="text-muted bi bi-bookmark" viewBox="0 0 16 16">
+                              <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                            </svg>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-3 mb-3 d-flex justify-content-center">
+                      <!-- card 4 (blue) -->
+                      <div class="card mb-4" style="width: 16.5rem; border-radius:.7rem;">
+                        <img src="./Images/blue.jpg" class="card-img-top" alt="..." style="border-top-left-radius:.7rem; border-top-right-radius:.7rem; height:150px;">
+                        <div class="card-body mx-2">
+                          <h5 class="card-title mt-2" style="font-size:18px;">How to easily create a website with React</h5>
+                          <p class="card-text">
+                            <span class="rounded-circle">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                              </svg>
+                            </span>
+                            <span class="align-middle text-muted pe-2" style="font-size: 14px;">
+                              3h 56m
+                            </span>
+                            <span class="ps-2">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#754ffe" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
+                                <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/>
+                              </svg> &#160;
+                              <span class="align-middle text-muted" style="font-size: 14px;">
+                                Intermediate
+                              </span>
+                            </span>
+                            <div>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <span class="align-middle ps-1" style="color:#ffaa46;">4.9</span>
+                              <span class="text-muted align-middle" style="font-size:12px;">(17,175)</span>
+                            </div>
+                          </p>
+                        </div>
+                        <div class="card-footer text-secondary bg-white" style="font-size:15.5px; border-bottom-left-radius:.7rem;; border-bottom-right-radius:.7rem;">
+                          <span class="pe-2">
+                            <img class="rounded-circle" src="./Images/terrier-pp.jpeg" alt="" style="width:30px;">
+                          </span>
+                          <span class="align-middle">
+                            Terri Urtog
+                          </span>
+                          <span class="float-end pt-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="text-muted bi bi-bookmark" viewBox="0 0 16 16">
+                              <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                            </svg>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- / Second slide end -->
+                <!-- Third slide -->
+                <div class="carousel-item">
+                  <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-3 mb-3 d-flex justify-content-center">
+                      <!-- card 1 (pink)-->
+                      <div class="card mb-4" style="width: 16.5rem; border-radius:.7rem;">
+                        <img src="./Images/pink.jpg" class="card-img-top" alt="..." style="border-top-left-radius:.7rem; border-top-right-radius:.7rem; height:150px;">
+                        <div class="card-body mx-2">
+                          <h5 class="card-title mt-2" style="font-size:18px;">An Introduction to GraphQL for Beginners</h5>
+                          <p class="card-text">
+                            <span class="rounded-circle">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                              </svg>
+                            </span>
+                            <span class="align-middle text-muted pe-2" style="font-size: 14px;">
+                              2h 15m
+                            </span>
+                            <span class="ps-2">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#754ffe" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
+                                <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/>
+                              </svg> &#160;
+                              <span class="align-middle text-muted" style="font-size: 14px;">
+                                Advanced
+                              </span>
+                            </span>
+                            <div>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <span class="align-middle ps-1" style="color:#ffaa46;">4.6</span>
+                              <span class="text-muted align-middle" style="font-size:12px;">(9,848)</span>
+                            </div>
+                          </p>
+                        </div>
+                        <div class="card-footer text-secondary bg-white" style="font-size:15.5px; border-bottom-left-radius:.7rem;; border-bottom-right-radius:.7rem;">
+                          <span class="pe-2">
+                            <img class="rounded-circle" src="./Images/sausage-dog.jpg" alt="" style="width:30px;">
+                          </span>
+                          <span class="align-middle">
+                            Jerry Wilson
+                          </span>
+                          <span class="float-end pt-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="text-muted bi bi-bookmark" viewBox="0 0 16 16">
+                              <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                            </svg>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-3 mb-3 d-flex justify-content-center">
+                      <!-- card 2 (blue)-->
+                      <div class="card mb-4" style="width: 16.5rem; border-radius:.7rem;">
+                        <img src="./Images/blue.jpg" class="card-img-top" alt="..." style="border-top-left-radius:.7rem; border-top-right-radius:.7rem; height:150px;">
+                        <div class="card-body mx-2">
+                          <h5 class="card-title mt-2" style="font-size:18px;">How to easily create a website with React</h5>
+                          <p class="card-text">
+                            <span class="rounded-circle">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                              </svg>
+                            </span>
+                            <span class="align-middle text-muted pe-2" style="font-size: 14px;">
+                              3h 56m
+                            </span>
+                            <span class="ps-2">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#754ffe" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
+                                <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/>
+                              </svg> &#160;
+                              <span class="align-middle text-muted" style="font-size: 14px;">
+                                Intermediate
+                              </span>
+                            </span>
+                            <div>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <span class="align-middle ps-1" style="color:#ffaa46;">4.9</span>
+                              <span class="text-muted align-middle" style="font-size:12px;">(17,175)</span>
+                            </div>
+                          </p>
+                        </div>
+                        <div class="card-footer text-secondary bg-white" style="font-size:15.5px; border-bottom-left-radius:.7rem;; border-bottom-right-radius:.7rem;">
+                          <span class="pe-2">
+                            <img class="rounded-circle" src="./Images/terrier-pp.jpeg" alt="" style="width:30px;">
+                          </span>
+                          <span class="align-middle">
+                            Terri Urtog
+                          </span>
+                          <span class="float-end pt-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="text-muted bi bi-bookmark" viewBox="0 0 16 16">
+                              <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                            </svg>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-3 mb-3 d-flex justify-content-center">
+                      <!-- card 3 (orange)-->
+                      <div class="card mb-4" style="width: 16.5rem; border-radius:.7rem;">
+                        <img src="./Images/orange.jpg" class="card-img-top" alt="..." style="border-top-left-radius:.7rem; border-top-right-radius:.7rem; height:150px;">
+                        <div class="card-body mx-2">
+                          <h5 class="card-title mt-2" style="font-size:18px;">CSS: The Ultimate CSS Course from Everyone</h5>
+                          <p class="card-text">
+                            <span class="rounded-circle">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                              </svg>
+                            </span>
+                            <span class="align-middle text-muted pe-2" style="font-size: 14px;">
+                              3h 30m
+                            </span>
+                            <span class="ps-2">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#754ffe" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
+                                <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/>
+                              </svg> &#160;
+                              <span class="align-middle text-muted" style="font-size: 14px;">
+                                Intermediate
+                              </span>
+                            </span>
+                            <div>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <span class="align-middle ps-1" style="color:#ffaa46;">4.7</span>
+                              <span class="text-muted align-middle" style="font-size:12px;">(23,570)</span>
+                            </div>
+                          </p>
+                        </div>
+                        <div class="card-footer text-secondary bg-white" style="font-size:15.5px; border-bottom-left-radius:.7rem;; border-bottom-right-radius:.7rem;">
+                          <span class="pe-2">
+                            <img class="rounded-circle" src="./Images/dog-pp.jpg" alt="" style="width:30px;">
+                          </span>
+                          <span class="align-middle">
+                            Claire Robertson
+                          </span>
+                          <span class="float-end pt-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="text-muted bi bi-bookmark" viewBox="0 0 16 16">
+                              <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                            </svg>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-3 mb-3 d-flex justify-content-center">
+                      <!-- card 4 (yellow) -->
+                      <div class="card mb-4" style="width: 16.5rem; border-radius:.7rem;">
+                        <img src="./Images/yellow.jpg" class="card-img-top" alt="..." style="border-top-left-radius:.7rem; border-top-right-radius:.7rem; height:150px;">
+                        <div class="card-body mx-2">
+                          <h5 class="card-title mt-2" style="font-size:18px;">Getting Started with JavaScript</h5>
+                          <p class="card-text">
+                            <span class="rounded-circle">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                              </svg>
+                            </span>
+                            <span class="align-middle text-muted pe-2" style="font-size: 14px;">
+                              2h 46m
+                            </span>
+                            <span class="ps-2">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#754ffe" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
+                                <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/>
+                              </svg> &#160;
+                              <span class="align-middle text-muted" style="font-size: 14px;">
+                                Advanced
+                              </span>
+                            </span>
+                            <div>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#ffaa46" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <span class="align-middle ps-1" style="color:#ffaa46;">4.8</span>
+                              <span class="text-muted align-middle" style="font-size:12px;">(5,300)</span>
+                            </div>
+                          </p>
+                        </div>
+                        <div class="card-footer text-secondary bg-white" style="font-size:15.5px; border-bottom-left-radius:.7rem;; border-bottom-right-radius:.7rem;">
+                          <span class="pe-2">
+                            <img class="rounded-circle" src="./Images/dog-pp.jpg" alt="" style="width:30px;">
+                          </span>
+                          <span class="align-middle">
+                            Claire Robertson
+                          </span>
+                          <span class="float-end pt-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="text-muted bi bi-bookmark" viewBox="0 0 16 16">
+                              <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                            </svg>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- / Third slide end -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- Footer -->
+  <div class="footer text-muted">
+    <div class="container">
+      <div class="row align-items-center g-0 border-top py-2">
+        <!-- Desccription -->
+        <div class="col-md-6 col-12 text-center text-md-start">
+          <span>&copy; 2021 Geeks. All Rights Reserved.</span>
+        </div>
+          <!-- Links -->
+        <div class="col-12 col-md-6">
+          <nav class="nav nav-footer justify-content-center justify-content-md-end">
+            <a class="nav-link text-muted active ps-0" href="#">Privacy</a>
+            <a class="nav-link text-muted" href="#">Terms </a>
+            <a class="nav-link text-muted" href="#">Feedback</a>
+            <a class="nav-link text-muted" href="#">Support</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
